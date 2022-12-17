@@ -209,4 +209,8 @@ MIT
 
 ---
 
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+## Author
+ ### Name  **Abdiladif Hassan**
+ 
+ ### Email  **abdiladifhassan114@gmail.com  || abdiladifhassan115@gmail.com**
+ ### Website  **https://www.hassanjr.com**
