@@ -1,33 +1,32 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
 var PermissionFile = NativeModules.PermissionFile;
 
-function manageExternalStorage(): { isGranted: boolean; message: string } {
-  var isGranted2 = false
-  if (Platform.Version >= 30){
-    PermissionFile.checkAndGrantPermission(
-      err => {
-        isGranted2 = false
-        return {isGranted: false, message: err}
+export default async function manageExternalStorage() {
+   await PermissionFile.checkAndGrantPermission(
+      err => { 
+        // return {isGranted: false, message: "An error occored"}
+       if(err){
+        return false
+       }else{
+        return false
+       }
+       
       },
       res => {
         if (res) {
-          isGranted2 = true
-          return {isGranted: true, message: "Permission Granted"}
+          // return {isGranted: true, message: "Permission Granted"}
+         
+          return true
         } else {
-          isGranted2 = false
-          return {isGranted: false, message: res}
+          // return {isGranted: false, message: "An error occored"}
+         
+          return false
         }
       },
-    );
-  }else{
-    isGranted2 = false
-    return {isGranted: false, message: "Manage External Storage Permission is only Available from android 10 (Api level 30 and above"}
-  }
-  return {isGranted: isGranted2, message: ""}
+    )
+   
+   
  
 }
 
-export default {
-  manageExternalStorage
-}

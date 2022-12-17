@@ -10,6 +10,7 @@ import com.facebook.react.uimanager.ViewManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+// import managePermission.PermissionFilePackage; // manage external permissions
 
 public class ManageExternalStoragePackage implements ReactPackage {
   @NonNull
@@ -17,6 +18,7 @@ public class ManageExternalStoragePackage implements ReactPackage {
   public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
     modules.add(new ManageExternalStorageModule(reactContext));
+    // modules.add(new PermissionFilePackage());
     return modules;
   }
 
