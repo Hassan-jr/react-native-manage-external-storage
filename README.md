@@ -2,7 +2,7 @@
 
 react native package to promt user to allow access to manage all files
 
-![Permission Access](../../Downloads/access.jpg?raw=true "Title")
+![Permission Access](./src/img/access.jpg?raw=true "Title")
 
 ## Installation
 
