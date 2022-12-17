@@ -1,22 +1,33 @@
 import { NativeModules, Platform } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-manage-external-storage' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+var PermissionFile = NativeModules.PermissionFile;
 
-const ManageExternalStorage = NativeModules.ManageExternalStorage
-  ? NativeModules.ManageExternalStorage
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
+function manageExternalStorage(): { isGranted: boolean; message: string } {
+  var isGranted2 = false
+  if (Platform.Version >= 30){
+    PermissionFile.checkAndGrantPermission(
+      err => {
+        isGranted2 = false
+        return {isGranted: false, message: err}
+      },
+      res => {
+        if (res) {
+          isGranted2 = true
+          return {isGranted: true, message: "Permission Granted"}
+        } else {
+          isGranted2 = false
+          return {isGranted: false, message: res}
+        }
+      },
     );
+  }else{
+    isGranted2 = false
+    return {isGranted: false, message: "Manage External Storage Permission is only Available from android 10 (Api level 30 and above"}
+  }
+  return {isGranted: isGranted2, message: ""}
+ 
+}
 
-export function multiply(a: number, b: number): Promise<number> {
-  return ManageExternalStorage.multiply(a, b);
+export default {
+  manageExternalStorage
 }
