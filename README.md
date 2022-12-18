@@ -1,7 +1,12 @@
 # react-native-manage-external-storage
 
 react native package to promt user to allow access to manage all files
+## Introduction
+This Package (react-native-manage-external-storage) is implemented in java and it is register in react native and a native module. The package solves the issues about implementing **MANAGE_EXTERNAL_STORAGE** Permission that is need to access all files in an android phone in React Native 
 
+The package is developed as a result of changes in Google Play Store Privacy Policy and the need to implement  MANAGE_EXTERNAL_STORAGE Permission in React Native. Google introduced this Permission from Android 11 (API level 30) or higher and its the ONLY way to access and Manage All files.
+
+This is how this package implements the permission. It implements by promting the user to allow the app to access and manage all files.
 ![Permission Access](./src/img/access.jpg?raw=true "Title")
 
 ## Installation
@@ -190,13 +195,27 @@ public class PermissionFilePackage implements ReactPackage {
 ## Usage
 
 ```js
-import  manageExternalStorage  from 'react-native-manage-external-storage';
+import  ManageExternalStorage  from 'react-native-manage-external-storage';
 
-// ...
+// ...Other codes
 
- React.useEffect(() => {
-    manageExternalStorage() //Prompts the android app user to "Allow access to manage all files"
+const [result, setResult] = useState(false);
+ useEffect(() => {
+    async function AskPermission() {
+    await ManageExternalStorage.checkAndGrantPermission(
+           err => { 
+             setResult(false)
+          },
+          res => {
+           setResult(true)
+          },
+        )
+   }
+     AskPermission()  // This function is only executed once if the user allows the permission and this package retains that permission 
   }, []);
+
+// .... Other codes
+
 ```
 
 ## Contributing
@@ -210,7 +229,7 @@ MIT
 ---
 
 ## Author
- ### Name  **Abdiladif Hassan**
+ ### Name  :  **Abdiladif Hassan**
  
- ### Email  **abdiladifhassan114@gmail.com  || abdiladifhassan115@gmail.com**
- ### Website  **https://www.hassanjr.com**
+ ### Email  :   **abdiladifhassan114@gmail.com  || abdiladifhassan115@gmail.com**
+ ### Website :  **https://www.hassanjr.com**
