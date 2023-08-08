@@ -232,4 +232,4 @@ MIT
  ### Name  :  **Abdiladif Hassan**
  
  ### Email  :   **abdiladifhassan114@gmail.com  || abdiladifhassan115@gmail.com**
- ### Website :  **https://www.hassanjr.com**
+ ### Website :  **https://hassanjr.vercel.app**
