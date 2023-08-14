@@ -1,6 +1,6 @@
 {
   "name": "react-native-manage-external-storage",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "React Native package to access and manage all files in android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
